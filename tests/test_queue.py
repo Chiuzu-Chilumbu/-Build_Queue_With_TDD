@@ -3,7 +3,7 @@
 from queue import Queue
 
 
-def test_should_create_a_stack_object_from_stack_class():
+def test_should_create_a_queue_object_from_queue_class():
     """a class called Queue."""
     queue = Queue()
     assert queue is not None
