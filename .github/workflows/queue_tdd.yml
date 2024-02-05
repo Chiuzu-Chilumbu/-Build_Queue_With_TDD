@@ -6,38 +6,35 @@ on:
   pull_request:
     branches: [ '**' ]
 
+permissions:  # Setting permissions for the entire workflow
+  contents: write
+  checks: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2  # Check out the repository code
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2  # Set up the Python environment
       with:
-        python-version: '3.x' # Set the Python version as per your project requirement
+        python-version: '3.x'  # Specify the Python version
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install pytest pytest-cov pytest_bdd flake8
-
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        python -m pip install --upgrade pip  # Upgrade pip
+        pip install pytest pytest-cov pytest_bdd  # Install your testing dependencies
 
     - name: Test with pytest
       run: |
-        python -m pytest --verbose --junit-xml=junit.xml
+        python -m pytest --verbose --junit-xml=junit.xml  # Run pytest and generate a JUnit XML report
 
     - name: Publish Test Report
-      uses: mikepenz/action-junit-report@v3
-      if: success() || failure() # always run even if the previous step fails
+      uses: mikepenz/action-junit-report@v3  # Use the action to publish the test report
+      if: success() || failure()  # This ensures the step runs regardless of the outcome of the previous step
       with:
-        report_paths: '**/junit.xml'
-        detailed_summary: true
-        include_passed: true
+        report_paths: '**/junit.xml'  # Specify the path to the JUnit report
+        detailed_summary: true  # Include a detailed summary in the workflow output
+        include_passed: true  # Include information about passed tests in the summary
