@@ -27,7 +27,7 @@ jobs:
         python -m pip install --upgrade pip  # Upgrade pip
         pip install pytest pytest-cov pytest_bdd  # Install your testing dependencies
 
-    - name: Test with pytest
+    - name: Run Tests with coverage
       run: |
         python -m pytest --verbose --junit-xml=junit.xml  # Run pytest and generate a JUnit XML report
 
@@ -38,3 +38,15 @@ jobs:
         report_paths: '**/junit.xml'  # Specify the path to the JUnit report
         detailed_summary: true  # Include a detailed summary in the workflow output
         include_passed: true  # Include information about passed tests in the summary
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'  # Only deploy when changes are pushed to the main branch
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .  # This points to the root directory where your index.html is located
