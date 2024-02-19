@@ -29,7 +29,9 @@ jobs:
 
     - name: Run Tests with coverage
       run: |
-        python -m pytest --verbose --junit-xml=junit.xml  # Run pytest and generate a JUnit XML report
+       python -m pytest --verbose --junit-xml=junit.xml  # Run pytest and generate a JUnit XML report
+      working-directory: ./Build_Queue_With_TDD
+
 
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v3  # Use the action to publish the test report
