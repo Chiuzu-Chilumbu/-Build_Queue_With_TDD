@@ -1,6 +1,6 @@
 """Unit test for individual components of the queue class"""
 
-from Build_Queue_With_TDD.queue.queue_adt import Queue
+from queue.queue_adt import Queue
 
 
 def test_should_create_a_queue_object_from_queue_class(new_queue):

@@ -2,7 +2,7 @@
 
 import pytest
 from pytest_bdd import scenario, given, when, then
-from Build_Queue_With_TDD.queue.queue_adt import Queue
+from queue.queue_adt import Queue
 
 @scenario('features/queue_operations.feature',
           'The queue class should be able to enqueue data onto the created deque')
