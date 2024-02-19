@@ -1,2 +1,2 @@
 """queue directory modules"""
-from .queue_adt import Queue
+from Build_Queue_With_TDD.queue.queue_adt import Queue
