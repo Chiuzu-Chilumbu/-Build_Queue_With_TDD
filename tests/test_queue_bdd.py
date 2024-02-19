@@ -1,6 +1,6 @@
 """Test steps for testing the Queue class with BDD"""
 
-from queue import Queue
+from queue.queue_adt import Queue
 from pytest_bdd import scenario, given, when, then
 
 
@@ -18,14 +18,12 @@ def should_contain_a_queue_class():
 
 
 @when('an object is instantiated from the Queue class')
-def test_object_should_be_created_from_queue_class():
+def test_object_should_be_created_from_queue_class(new_queue):
     """an object is instantiated from the Queue class."""
-    queue = Queue()
-    assert queue is not None
+    assert new_queue is not None
 
 
 @then('The object should be an instance of the queue class')
-def test_created_object_should_be_instance_of_queue_class():
+def test_created_object_should_be_instance_of_queue_class(new_queue):
     """The object should be an instance of the queue class."""
-    queue = Queue()
-    assert isinstance(queue, Queue)
+    assert isinstance(new_queue, Queue)
