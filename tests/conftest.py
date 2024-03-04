@@ -6,5 +6,5 @@ from queue.queue_adt import Queue
 @pytest.fixture(scope='function')
 def new_queue():
 	"""fixture to provide a new queue for each test"""
-	return Queue()
+	return Queue(5)
 
