@@ -26,6 +26,3 @@ Feature: Created Queue class must be able to perform the basic operations
     Given a queue where the size is equal to the given capacity
     When the queue is checked if it is full
     Then the queue should return True when full
-
-
-  

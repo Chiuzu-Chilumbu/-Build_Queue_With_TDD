@@ -2,6 +2,7 @@
 
 import pytest
 
+
 def test_queue_is_initially_empty(new_queue):
     assert new_queue.size() == 0, "New queue should be empty."
 
