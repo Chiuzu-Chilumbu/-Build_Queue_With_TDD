@@ -16,18 +16,34 @@ class Queue:
         Add data to the end of the queue.
         Params -> Data: any Python data type, e.g., int, str, etc.
         """
-        if len(self.queue) == self.capacity:
+        if self.isFull():
             raise Exception('Queue is Full')
         else:
             self.queue.append(item)
-            return self.queue
 
     def dequeue(self):
         """Remove data from the queue"""
-        if len(self.queue) == 0:
+        if self.isEmpty():
             raise Exception('Queue is empty')
         else:
-            return self.queue.popleft()
+            self.queue.popleft()
 
     def size(self):
         return len(self.queue)
+    
+
+    def isEmpty(self):
+        return len(self.queue) == 0
+    
+
+    def isFull(self):
+        return len(self.queue) == self.capacity
+    
+    def show(self):
+        print(self.queue)
+
+
+    def peek(self):
+        if self.isEmpty():
+            raise Exception('Queue is empty')
+        return self.queue[0]
